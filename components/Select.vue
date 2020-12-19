@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.select">
     <div>
-      Сортировать по:
+      <span :class="$style.sort">Сортировать по:</span>
       <button @click="setIsVisible" :class="$style.btn">
         {{ options.find((el) => el.id === activeOptionId).name }}
         <img
@@ -50,9 +50,12 @@ export default {
 
 <style module lang="scss">
 .select {
-  margin-top: 42px;
+  margin-top: 10px;
 }
 .btn {
+  padding: 0px;
+  width: 43px;
+  height: 21px;
   border: none;
   background: none;
   outline: none;
@@ -65,6 +68,9 @@ export default {
 .triangle {
   margin-bottom: 2px;
 }
+.sort {
+  line-height: 21px;
+}
 .list {
   float: right;
   width: 160px;
@@ -74,7 +80,7 @@ export default {
   padding: 8px 0 12px 0;
   animation: rotateY 400ms ease-in-out forwards;
   transform-origin: top center;
-  margin-right: 0px;
+  margin-top: 6px;
 
   @keyframes rotateY {
     0% {

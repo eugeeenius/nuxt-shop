@@ -20,7 +20,6 @@ export default {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding-left: 14px;
 }
 .header {
   min-width: 100vw;
@@ -33,5 +32,6 @@ export default {
   font-weight: bold;
   font-size: 22px;
   margin-top: 18px;
+  line-height: 28px;
 }
 </style>

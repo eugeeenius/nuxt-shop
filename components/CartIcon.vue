@@ -35,7 +35,6 @@
 <style module lang="scss">
 .cart {
   display: flex;
-  margin-top: 16px;
   margin: 16px 14px 0 0;
   cursor: pointer;
 }

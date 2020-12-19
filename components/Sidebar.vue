@@ -3,25 +3,44 @@
     <div>
       <h1 :class="$style.title">Каталог</h1>
       <div :class="$style.menu">
-        <nuxt-link to="#" :class="$style.menu_item">Рюкзаки</nuxt-link>
-        <nuxt-link to="#" :class="$style.menu_item">Футболки</nuxt-link>
-        <nuxt-link to="#" :class="$style.menu_item">Рубашки</nuxt-link>
+        <nuxt-link
+          :class="$style.menu_item"
+          :to="'/categories/' + category.id"
+          v-for="category in categories"
+          :key="category.id"
+        >
+          {{ category.name }}
+        </nuxt-link>
       </div>
     </div>
     <Select />
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      categories: [],
+    };
+  },
+  async fetch() {
+    this.categories = await fetch(
+      "https://frontend-test.idaproject.com/api/product-category"
+    ).then((res) => res.json());
+  },
+};
+</script>
+
 <style module lang="scss">
 .container {
   width: 1264px;
   margin: 0 auto;
-  padding-left: 14px;
+  padding-top: 32px;
   display: flex;
   justify-content: space-between;
 }
 .title {
-  margin-top: 32px;
   font-size: 32px;
   font-weight: bold;
   color: #1f1f1f;

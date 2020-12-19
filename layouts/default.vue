@@ -2,7 +2,7 @@
   <div>
     <Header />
     <Sidebar />
-    <main>
+    <main class="container">
       <Nuxt />
     </main>
   </div>
@@ -13,7 +13,6 @@ html {
   font-family: "PT Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
-  word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -25,6 +24,13 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+.container {
+  position: absolute;
+  width: 1104px;
+  height: 848px;
+  left: calc(50% - 472px);
+  top: 163px;
 }
 a.nuxt-link-active,
 a.nuxt-link-active:hover {

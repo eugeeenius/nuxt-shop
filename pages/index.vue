@@ -1,3 +1,9 @@
-<template>
-  <h1>Helo</h1>
-</template>
+<template></template>
+
+<script>
+export default {
+  created() {
+    this.$nuxt.$router.replace({ path: "categories/1" });
+  },
+};
+</script>

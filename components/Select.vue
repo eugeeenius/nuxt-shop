@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.select">
-    <div>
+    <div :class="$style.header">
       <span :class="$style.sort">Сортировать по:</span>
       <button @click="setIsVisible" :class="$style.btn">
         {{ options.find((el) => el.id === activeOptionId).name }}
@@ -12,7 +12,11 @@
       </button>
     </div>
 
-    <div :class="$style.list" v-if="isVisible">
+    <div
+      v-if="isVisible"
+      :class="$style.list"
+      :style="!isVisible ? { 'z-index': -1 } : { 'z-index': 1 }"
+    >
       <div
         :class="$style.list_item"
         v-for="option in options"
@@ -49,64 +53,75 @@ export default {
 </script>
 
 <style module lang="scss">
+.active {
+  min-height: 20px;
+}
 .select {
+  z-index: 1000;
   margin-top: 10px;
-}
-.btn {
-  padding: 0px;
-  width: 43px;
-  height: 21px;
-  border: none;
-  background: none;
-  outline: none;
-  color: #59606d;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: "PT sans";
-  margin-left: auto;
-}
-.triangle {
-  margin-bottom: 2px;
-}
-.sort {
-  line-height: 21px;
-}
-.list {
-  float: right;
-  width: 160px;
-  min-height: 68px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  padding: 8px 0 12px 0;
-  animation: rotateY 400ms ease-in-out forwards;
-  transform-origin: top center;
-  margin-top: 6px;
+  max-height: 20px;
 
-  @keyframes rotateY {
-    0% {
-      transform: rotateY(90deg);
+  .header {
+    min-width: 160px;
+
+    .btn {
+      padding: 0px;
+      height: 21px;
+      border: none;
+      background: none;
+      outline: none;
+      color: #59606d;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: "PT sans";
+
+      .triangle {
+        margin-bottom: 2px;
+      }
     }
-    80% {
-      transform: rotateY(-10deg);
-    }
-    100% {
-      transform: rotateY(0);
+    .sort {
+      line-height: 21px;
     }
   }
 
-  &_item {
+  .list {
+    background: #fff;
+    float: right;
     width: 160px;
-    height: 26px;
-    font-size: 14px;
-    line-height: 18px;
-    color: #959dad;
-    text-align: left;
-    padding: 4px 0 4px 12px;
-    transition: 100ms;
-    &:hover {
-      color: #1f1f1f;
-      background: #f8f8f8;
-      cursor: pointer;
+    min-height: 68px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 8px 0 12px 0;
+    animation: rotateY 400ms ease-in-out forwards;
+    transform-origin: top center;
+    margin-top: 6px;
+
+    @keyframes rotateY {
+      0% {
+        transform: rotateY(90deg);
+      }
+      80% {
+        transform: rotateY(-10deg);
+      }
+      100% {
+        transform: rotateY(0);
+      }
+    }
+
+    &_item {
+      width: 160px;
+      height: 26px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #959dad;
+      text-align: left;
+      padding: 4px 0 4px 12px;
+      transition: 100ms;
+      &:hover {
+        color: #1f1f1f;
+        background: #f8f8f8;
+        cursor: pointer;
+      }
     }
   }
 }

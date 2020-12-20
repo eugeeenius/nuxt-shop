@@ -19,15 +19,22 @@
 
 <script>
 export default {
-  data() {
-    return {
-      categories: [],
-    };
+  async asyncData({ store }) {
+    // Фетчим категории в store
+    // const categories = await fetch(
+    //   "https://frontend-test.idaproject.com/api/product-category"
+    // ).then((res) => res.json());
+    // return { categories };
+    // debugger;
+    // if (store.getters["categories/categories"].length === 0) {
+    //   await store.dispatch("categories/getCategories");
+    // }
   },
-  async fetch() {
-    this.categories = await fetch(
-      "https://frontend-test.idaproject.com/api/product-category"
-    ).then((res) => res.json());
+  computed: {
+    // Получаем список категорий из store
+    categories() {
+      return this.$store.getters["categories/categories"];
+    },
   },
 };
 </script>

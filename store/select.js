@@ -16,10 +16,6 @@ export const mutations = {
   }
 }
 
-export const actions = {
-
-}
-
 export const getters = {
   options: state => state.options,
   activeOptionId: state => state.activeOptionId,

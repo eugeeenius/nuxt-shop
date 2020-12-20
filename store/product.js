@@ -1,19 +1,22 @@
-export const state = () => {
-  url: 'https://frontend-test.idaproject.com/api/'
-}
+export const state = () => ({
+  product: []
+})
 
 export const actions = {
-  async getCategories({ commit }) {
+  async getProducts({ commit }) {
+    const product = await fetch('https://frontend-test.idaproject.com/api/product')
+      .then(res => res.json())
 
+    commit('setProduct', product)
   }
 }
 
 export const mutations = {
-  setCategories(state, categories) {
-    state.categories = categories
+  setProduct(state, product) {
+    state.product = product
   }
 }
 
 export const getters = {
-  getUrl: state => state.url
+  product: state => state.product
 }

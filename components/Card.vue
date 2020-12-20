@@ -12,17 +12,14 @@
         <span :class="$style.points">{{ rating }}</span>
       </div>
 
-      <button :class="$style.btn">
+      <button @click="addToCart" :class="$style.btn">
         <img :class="$style.cart" src="~/assets/icons/cart.svg" alt="cart" />
       </button>
     </div>
     <div :class="$style.description">
       <p :class="$style.name">{{ name.toLowerCase() }}</p>
       <p :class="$style.price">
-        {{
-          // Форматируем цену
-          price.toString().slice(0, 3) + " 000 ₽"
-        }}
+        {{ format(price) }}
       </p>
     </div>
   </div>
@@ -37,6 +34,18 @@ export default {
     rating: { type: Number },
     name: { type: String },
     price: { type: Number },
+  },
+  methods: {
+    // Форматируем цену
+    format(price) {
+      const priceStr = price.toString();
+      const len = priceStr.length;
+      return `${priceStr.substr(0, len - 3)} ${priceStr.substr(-3)} ₽`;
+    },
+    // Добавляем товар в store/cart
+    addToCart() {
+      this.$store.commit("cart/addProduct", this.$props);
+    },
   },
 };
 </script>

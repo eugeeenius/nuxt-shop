@@ -92,21 +92,7 @@ export default {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     padding: 8px 0 12px 0;
-    animation: rotateY 400ms ease-in-out forwards;
-    transform-origin: top center;
     margin-top: 6px;
-
-    @keyframes rotateY {
-      0% {
-        transform: rotateY(90deg);
-      }
-      80% {
-        transform: rotateY(-10deg);
-      }
-      100% {
-        transform: rotateY(0);
-      }
-    }
 
     &_item {
       width: 160px;

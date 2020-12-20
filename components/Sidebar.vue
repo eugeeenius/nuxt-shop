@@ -19,17 +19,6 @@
 
 <script>
 export default {
-  async asyncData({ store }) {
-    // Фетчим категории в store
-    // const categories = await fetch(
-    //   "https://frontend-test.idaproject.com/api/product-category"
-    // ).then((res) => res.json());
-    // return { categories };
-    // debugger;
-    // if (store.getters["categories/categories"].length === 0) {
-    //   await store.dispatch("categories/getCategories");
-    // }
-  },
   computed: {
     // Получаем список категорий из store
     categories() {
@@ -43,7 +32,7 @@ export default {
 .container {
   width: 1264px;
   margin: 0 auto;
-  padding-top: 32px;
+  padding-top: 88px;
   display: flex;
   justify-content: space-between;
 }

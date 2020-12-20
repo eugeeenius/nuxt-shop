@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <Cart />
     <Sidebar />
     <main class="container">
       <Nuxt />

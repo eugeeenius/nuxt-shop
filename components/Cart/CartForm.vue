@@ -2,6 +2,7 @@
   <form :class="$style.form" @submit.prevent="checkForm">
     <div :class="$style.input">
       <input
+        ref="name"
         v-model.trim="name"
         id="name"
         type="text"
@@ -12,20 +13,20 @@
       />
 
       <input
+        ref="phone"
         type="text"
         v-model="phone"
         :class="$style.input__item"
         placeholder="Телефон"
         v-mask="'+7(###)-###-##-##'"
-        :style="!isPhoneValid ? 'border: 2px solid red' : ''"
         @focus="removeBorder"
       />
       <input
+        ref="address"
         v-model="address"
         type="text"
         :class="$style.input__item"
         placeholder="Адрес"
-        :style="!isAddressValid ? 'border: 2px solid red' : ''"
         @focus="removeBorder"
       />
     </div>
@@ -47,21 +48,33 @@ export default {
   },
   methods: {
     checkForm() {
+      // Валидация формы
       if (this.name.length < 2) {
         this.isNameValid = false;
+        this.$refs.name.style.border = "2px solid red";
+      } else {
+        this.isNameValid = true;
       }
       if (this.phone.length !== 17) {
         this.isPhoneValid = false;
+        this.$refs.phone.style.border = "2px solid red";
+      } else {
+        this.isPhoneValid = true;
       }
       if (this.address.length < 5) {
         this.isAddressValid = false;
+        this.$refs.address.style.border = "2px solid red";
+      } else {
+        this.isAddressValid = true;
       }
 
+      // Если все условия соблюдены isFormValid = true
       if (this.isNameValid && this.isPhoneValid && this.isAddressValid) {
         this.$store.commit("cart/isValid");
       }
     },
 
+    // Убираем красный бордер, если инпут корректный
     removeBorder(e) {
       e.target.style.border = "none";
     },

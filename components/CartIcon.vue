@@ -30,7 +30,7 @@
       </svg>
     </button>
 
-    <div :class="$style.label">
+    <div :class="$style.label" @click="clickHandler">
       <span :class="$style.counter">{{ counter }}</span>
     </div>
   </div>

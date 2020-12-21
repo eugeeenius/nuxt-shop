@@ -43,11 +43,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      Id: this.id,
-    };
-  },
   props: {
     id: { type: Number },
   },

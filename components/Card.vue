@@ -12,15 +12,13 @@
         <span :class="$style.points">{{ rating }}</span>
       </div>
 
-      <button @click="addToCart" :class="$style.btn">
-        <img :class="$style.cart" src="~/assets/icons/cart.svg" alt="cart" />
+      <button @click="clickHandler" :class="$style.btn">
+        <CartIconSmall :id="id" />
       </button>
     </div>
     <div :class="$style.description">
       <p :class="$style.name">{{ name.toLowerCase() }}</p>
-      <p :class="$style.price">
-        {{ formatedPrice }}
-      </p>
+      <p :class="$style.price" ref="price"></p>
     </div>
   </div>
 </template>
@@ -38,7 +36,8 @@ export default {
   },
   data() {
     return {
-      formatedPrice: "",
+      timestamp: "",
+      inCart: false,
     };
   },
   methods: {
@@ -46,14 +45,20 @@ export default {
     format(price) {
       return this.$store.dispatch("product/formatPrice", price);
     },
-    // Добавляем товар в store/cart
-    addToCart() {
-      this.$store.commit("cart/addProduct", this.$props);
+    // Добавить/убрать товар нажатием на иконку на карточке
+    clickHandler() {
+      if (!this.inCart) {
+        this.$store.commit("cart/addProduct", this.$props);
+        this.inCart = !this.inCart;
+      } else {
+        this.$store.commit("cart/removeProduct", this.$props.id);
+        this.inCart = !this.inCart;
+      }
     },
   },
   async mounted() {
     // Форматируем цену(2)
-    this.formatedPrice = await this.format(this.$props.price);
+    this.$refs.price.innerHTML = await this.format(this.$props.price);
   },
 };
 </script>

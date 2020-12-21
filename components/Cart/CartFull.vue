@@ -2,7 +2,7 @@
   <div :class="$style.full">
     <span :class="[$style.title, $style.top]">Товары в корзине</span>
     <div :class="$style.wrap">
-      <div v-for="c in this.cart" :key="c.id">
+      <div v-for="c in this.cart" :key="c.timestamp">
         <CartItem :cart="c" />
       </div>
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: mapGetters("cart", ["cart"]),
 };

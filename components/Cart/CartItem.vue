@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{
-      background: `url('https://frontend-test.idaproject.com${cart.photo}') 5% 68%/cover no-repeat`,
+      background: `url('https://frontend-test.idaproject.com${cart.photo}') 5% 68%/contain no-repeat`,
       'background-size': '100px, 100px',
     }"
     :class="$style.item"
@@ -37,15 +37,10 @@ export default {
     format(price) {
       return this.$store.dispatch("product/formatPrice", price);
     },
-    removeFromCart(id) {
-      return this.$store.commit("product/formatPrice", id);
-    },
   },
   async mounted() {
     // Форматируем цену(2)
-    if (this.$refs.price) {
-      this.$refs.price.innerHTML = await this.format(this.$props.cart.price);
-    }
+    this.$refs.price.innerHTML = await this.format(this.$props.cart.price);
   },
 };
 </script>
@@ -55,10 +50,13 @@ export default {
   width: 364px;
   height: 120px;
   border-radius: 8px;
-  background: #fff;
+  // background: #fff;
   margin-top: 12px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 16px 12px 130px;
+  // background-position: 5% 68%;
+  // background-size: 100px, 100px / cover;
+  // background-repeat: no-repeat;
 
   .content {
     width: 218px;

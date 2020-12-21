@@ -1,6 +1,7 @@
 export const state = () => ({
   cart: [],
   isOpen: false,
+  isFormValid: false
 })
 
 export const mutations = {
@@ -12,10 +13,17 @@ export const mutations = {
   },
   removeProduct(state, id) {
     state.cart = state.cart.filter(el => el.id !== id)
+  },
+  isValid(state) {
+    state.isFormValid = !state.isFormValid
+  },
+  clearCart(state) {
+    state.cart = []
   }
 }
 
 export const getters = {
   isOpen: state => state.isOpen,
-  cart: state => state.cart
+  cart: state => state.cart,
+  isFormValid: state => state.isFormValid
 }

@@ -5,14 +5,17 @@
       <div :class="$style.header">
         <h1 :class="$style.title">Корзина</h1>
 
-        <a href="#" @click.prevent="toggle">
+        <a href="#" @click.prevent="close">
           <img src="~/assets/icons/close.svg" alt="close" :class="$style.close"
         /></a>
+      </div>
+      <div v-if="isFormValid">
+        <CartOrdered />
       </div>
       <div v-if="cart.length === 0">
         <CartEmpty />
       </div>
-      <div v-if="cart.length !== 0">
+      <div v-if="cart.length !== 0 && !isFormValid">
         <CartFull />
       </div>
     </div>
@@ -20,18 +23,27 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   computed: {
-    isOpen() {
-      return this.$store.getters["cart/isOpen"];
-    },
-    cart() {
-      return this.$store.getters["cart/cart"];
-    },
+    ...mapGetters({
+      isOpen: "cart/isOpen",
+      cart: "cart/cart",
+      isFormValid: "cart/isFormValid",
+    }),
   },
   methods: {
-    toggle() {
+    ...mapMutations({
+      isValid: "cart/isValid",
+      clearCart: "cart/clearCart",
+    }),
+    close() {
       this.$store.commit("cart/toggleIsOpen");
+
+      // Если заказ успешно прошел – чистим корзину
+      if (this.isFormValid) {
+        this.isValid(), this.clearCart();
+      }
     },
   },
 };

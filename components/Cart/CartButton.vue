@@ -1,5 +1,7 @@
 <template>
-  <button @click="handler" :class="$style.btn">{{ text }}</button>
+  <button @click="handler" :class="$style.btn" type="submit">
+    {{ text }}
+  </button>
 </template>
 
 <script>
@@ -29,5 +31,10 @@ export default {
   word-spacing: 0px;
   outline: none;
   cursor: pointer;
+  transition: 300ms;
+
+  &:hover {
+    background: #59606d;
+  }
 }
 </style>

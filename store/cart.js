@@ -10,7 +10,6 @@ export const mutations = {
   },
   addProduct(state, product) {
     state.cart.push(product)
-    localStorage.setItem
   },
   removeProduct(state, id) {
     state.cart = state.cart.filter(el => el.id !== id)

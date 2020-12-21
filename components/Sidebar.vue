@@ -32,7 +32,7 @@ export default {
 .container {
   width: 1264px;
   margin: 0 auto;
-  padding-top: 88px;
+  padding-top: 97px;
   display: flex;
   justify-content: space-between;
 }

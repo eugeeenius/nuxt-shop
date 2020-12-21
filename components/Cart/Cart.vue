@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen">
     <div :class="$style.layout"></div>
-    <div :class="$style.cart">
+    <div :class="$style.cart" ref="cart">
       <div :class="$style.header">
         <h1 :class="$style.title">Корзина</h1>
 
@@ -9,7 +9,12 @@
           <img src="~/assets/icons/close.svg" alt="close" :class="$style.close"
         /></a>
       </div>
-      <CartFull />
+      <div v-if="cart.length === 0">
+        <CartEmpty />
+      </div>
+      <div v-if="cart.length !== 0">
+        <CartFull />
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +24,9 @@ export default {
   computed: {
     isOpen() {
       return this.$store.getters["cart/isOpen"];
+    },
+    cart() {
+      return this.$store.getters["cart/cart"];
     },
   },
   methods: {
@@ -41,11 +49,13 @@ export default {
   z-index: 9999;
 }
 .cart {
+  overflow-x: hidden;
+  overflow-y: scroll;
   z-index: 10000;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
-  min-height: 100%;
+  height: 1077px;
   width: 460px;
   padding: 0 48px;
   padding-top: 52px;

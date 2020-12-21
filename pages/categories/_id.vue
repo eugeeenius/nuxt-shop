@@ -6,6 +6,7 @@
         :rating="product.rating"
         :name="product.name"
         :price="product.price"
+        :id="product.id"
       />
     </div>
   </div>

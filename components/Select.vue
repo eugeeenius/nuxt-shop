@@ -74,6 +74,7 @@ export default {
       font-size: 16px;
       cursor: pointer;
       font-family: "PT sans";
+      margin-left: 2px;
 
       .triangle {
         margin-bottom: 2px;

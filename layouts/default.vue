@@ -3,11 +3,25 @@
     <Header />
     <Cart />
     <Sidebar />
-    <main class="container">
+    <main
+      class="container"
+      :style="isCartOpen ? 'overflow: hidden' : 'overflow: visible'"
+    >
       <Nuxt />
     </main>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    // Если корзина открыта – отключаем скролл
+    isCartOpen() {
+      return this.$store.getters["cart/isOpen"];
+    },
+  },
+};
+</script>
 
 <style>
 html {

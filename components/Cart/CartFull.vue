@@ -1,20 +1,26 @@
 <template>
-  <div :class="$style.empty">
+  <div :class="$style.full">
     <span :class="[$style.title, $style.top]">Товары в корзине</span>
-    <div :class="$style.product">
-      <CartItem />
-      <CartItem />
-      <CartItem />
+    <div :class="$style.wrap">
+      <div v-for="c in this.cart" :key="c.id">
+        <CartItem :cart="c" />
+      </div>
     </div>
+
+    <span :class="[$style.title, $style.bottom]">Оформить заказ</span>
+    <CartForm />
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+export default {
+  computed: mapGetters("cart", ["cart"]),
+};
 </script>
 
 <style lang="scss" module>
-.empty {
+.full {
   .title {
     display: block;
     font-size: 18px;
@@ -24,13 +30,14 @@ export default {};
     &.top {
       margin-top: 24px;
     }
+
+    &.bottom {
+      margin-top: 32px;
+    }
   }
 
-  .product {
-    width: 364px;
-    max-height: 384px;
-    overflow-y: auto;
+  .wrap {
+    padding-top: 4px;
   }
 }
 </style>
-<CartButton :text="'Перейти к выбору'" :handler="() => console.log('yo')" />

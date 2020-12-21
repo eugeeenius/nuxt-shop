@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.cart">
-    <a href="#" @click.prevent="clickHandler">
+    <button :class="$style.btn" @click="clickHandler">
       <svg
         :class="$style.icon"
         width="32"
@@ -28,9 +28,11 @@
           fill="#1F1F1F"
         />
       </svg>
-    </a>
+    </button>
 
-    <div :class="$style.label">{{ counter }}</div>
+    <div :class="$style.label">
+      <span :class="$style.counter">{{ counter }}</span>
+    </div>
   </div>
 </template>
 
@@ -50,7 +52,21 @@ export default {
 </script>
 
 <style module lang="scss">
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  outline: none;
+  border: none;
+  width: 34px;
+  height: 33px;
+  padding: 0;
+  cursor: pointer;
+}
 .cart {
+  width: 34px;
+  height: 33px;
   display: flex;
   margin: 16px 14px 0 0;
   cursor: pointer;
@@ -61,7 +77,7 @@ export default {
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
 }
 .label {
-  width: 12px;
+  min-width: 12px;
   height: 12px;
   font-size: 8px;
   font-weight: bold;
@@ -71,8 +87,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  vertical-align: top;
   margin-left: -10px;
+  text-align: center;
   padding: 1px 0 0 1px;
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
 }

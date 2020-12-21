@@ -3,16 +3,15 @@ export const state = () => ({
   isOpen: false,
 })
 
-export const actions = {
-
-}
-
 export const mutations = {
   toggleIsOpen(state) {
     state.isOpen = !state.isOpen
   },
   addProduct(state, product) {
     state.cart.push(product)
+  },
+  removeProduct(state, id) {
+    state.cart = state.cart.filter(el => el.id !== id)
   }
 }
 

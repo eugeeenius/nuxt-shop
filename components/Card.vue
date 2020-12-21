@@ -19,7 +19,7 @@
     <div :class="$style.description">
       <p :class="$style.name">{{ name.toLowerCase() }}</p>
       <p :class="$style.price">
-        {{ format(price) }}
+        {{ formatedPrice }}
       </p>
     </div>
   </div>
@@ -28,6 +28,7 @@
 <script>
 export default {
   props: {
+    id: { type: Number },
     photo: {
       type: String,
     },
@@ -35,17 +36,24 @@ export default {
     name: { type: String },
     price: { type: Number },
   },
+  data() {
+    return {
+      formatedPrice: "",
+    };
+  },
   methods: {
-    // Форматируем цену
+    // Форматируем цену(1)
     format(price) {
-      const priceStr = price.toString();
-      const len = priceStr.length;
-      return `${priceStr.substr(0, len - 3)} ${priceStr.substr(-3)} ₽`;
+      return this.$store.dispatch("product/formatPrice", price);
     },
     // Добавляем товар в store/cart
     addToCart() {
       this.$store.commit("cart/addProduct", this.$props);
     },
+  },
+  async mounted() {
+    // Форматируем цену(2)
+    this.formatedPrice = await this.format(this.$props.price);
   },
 };
 </script>

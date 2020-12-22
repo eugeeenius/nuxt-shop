@@ -46,6 +46,17 @@ export default {
       }
     },
   },
+
+  async mounted() {
+    // Загружаем состояние корзины из localStorage
+    const cart = await localStorage.getItem("cart");
+    const cartText = await JSON.parse(cart);
+    if (cart) {
+      cartText.forEach((el) => {
+        this.$store.commit("cart/addProduct", el);
+      });
+    }
+  },
 };
 </script>
 
